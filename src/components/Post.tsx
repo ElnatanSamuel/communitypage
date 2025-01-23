@@ -116,41 +116,36 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   /**
-   * Recursively adds a reply to a comment or its nested replies
-   * @param {CommentType[]} comments - Array of comments to search through
-   * @returns {CommentType[]} Updated comments array with new reply
-   */
-  const addReplyRecursively = (comments: CommentType[]): CommentType[] => {
-    return comments.map((comment) => {
-      if (comment.replies && comment.replies.length > 0) {
-        return {
-          ...comment,
-          replies: addReplyRecursively(comment.replies),
-        };
-      }
-      return comment;
-    });
-  };
-
-  /**
    * Handles adding a new comment or reply
    * @param {CommentType} newComment - The new comment to be added
    */
   const handleAddComment = (newComment: CommentType) => {
     if (newComment.parentId) {
       setComments((prevComments) => {
-        return addReplyRecursively(prevComments).map((comment) => {
-          if (comment.id === newComment.parentId) {
-            return {
-              ...comment,
-              replies: [
-                ...(comment.replies || []),
-                { ...newComment, replies: [] },
-              ],
-            };
-          }
-          return comment;
-        });
+        const addReplyRecursively = (
+          comments: CommentType[]
+        ): CommentType[] => {
+          return comments.map((comment) => {
+            if (comment.id === newComment.parentId) {
+              return {
+                ...comment,
+                replies: [
+                  ...(comment.replies || []),
+                  { ...newComment, replies: [] },
+                ],
+              };
+            }
+            if (comment.replies && comment.replies.length > 0) {
+              return {
+                ...comment,
+                replies: addReplyRecursively(comment.replies),
+              };
+            }
+            return comment;
+          });
+        };
+
+        return addReplyRecursively(prevComments);
       });
     } else {
       setComments((prevComments) => [
