@@ -24,20 +24,22 @@ A modern, responsive community page application built with React and TypeScript.
 
 ## Project Structure
 
+```tree
 src/
 ├── components/
-│ ├── Comment.tsx # Handles individual comments and nested replies
-│ ├── CreateComment.tsx # Comment creation form component
-│ ├── CreatePost.tsx # Post creation dialog component
-│ ├── Post.tsx # Individual post display component
-│ ├── PostList.tsx # Renders list of posts
-│ └── Navbar.tsx # Application navigation bar
+│   ├── Comment.tsx           # Handles individual comments and nested replies
+│   ├── CreateComment.tsx     # Comment creation form component
+│   ├── CreatePost.tsx        # Post creation dialog component
+│   ├── Post.tsx             # Individual post display component
+│   ├── PostList.tsx         # Renders list of posts
+│   └── Navbar.tsx           # Application navigation bar
 ├── layout/
-│ └── Layout.tsx # Main layout wrapper component
+│   └── Layout.tsx           # Main layout wrapper component
 ├── types/
-│ └── index.ts # TypeScript type definitions
+│   └── index.ts             # TypeScript type definitions
 └── data/
-└── mockData.ts # Mock data for development
+    └── mockData.ts          # Mock data for development
+```
 
 ## Core Components 🧩
 
