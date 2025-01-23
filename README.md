@@ -1,6 +1,6 @@
 # Community Page Application
 
-![Community Page Screenshot](https://your-screenshot-url.png)
+![Community Page Screenshot](./screenshots/community-page.png)
 
 ## Overview
 
